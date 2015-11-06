@@ -3,7 +3,7 @@
 
 library(data.table)
 
-skip_download = TRUE
+skip_download = FALSE
 
 data_url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 data_file <- "data/household_power_consumption.zip"

@@ -9,7 +9,7 @@ skip_download = FALSE
 data_url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 data_file <- "data/household_power_consumption.zip"
 
-dates_to_keep <- c("2/1/2007", "2/2/2007")
+dates_to_keep <- c("1/2/2007", "2/2/2007") # DD/MM/YY  not typical US order!
 
 
 if (!dir.exists("data")) {
@@ -38,7 +38,7 @@ convert_dt <- function(date, time) {
     ## Convert date and time as found in data file into POSIXct
     ##
     ## Args:
-    ##   date: character vector in MM/DD/YYYY format (or vector of same)
+    ##   date: character vector in DD/MM/YYYY format (or vector of same)
     ##   time: character vector in HH:MM:SS format (or vector of same)
     ##
     ## Returns:
@@ -47,7 +47,7 @@ convert_dt <- function(date, time) {
     ## Note:
     ##   Given that actual timezone of data is unknown, assume UTC
     ##
-    as.POSIXct(strptime(paste(date, time), "%m/%d/%Y %H:%M:%S", tz="GMT"))
+    as.POSIXct(strptime(paste(date, time), "%d/%m/%Y %H:%M:%S", tz="GMT"))
 }
 
 ## Convert Date and Time strings to POSIXct

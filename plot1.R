@@ -8,7 +8,7 @@ skip_download = FALSE
 data_url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 data_file <- "data/household_power_consumption.zip"
 
-dates_to_keep <- c("2/1/2007", "2/2/2007")
+dates_to_keep <- c("1/2/2007", "2/2/2007") # DD/MM/YY  not typical US order!
 
 
 if (!dir.exists("data")) {

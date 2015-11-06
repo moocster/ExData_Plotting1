@@ -57,6 +57,7 @@ df <- mutate(df, When=convert_dt(Date, Time))
 
 png("plot2.png", width=480, height=480)
 
-plot(df$When, df$Global_active_power, type="l", ylab="Global Active Power (kilowatts)")
+plot(df$When, df$Global_active_power, type="l",
+     xlab="", ylab="Global Active Power (kilowatts)")
 
 dev.off()

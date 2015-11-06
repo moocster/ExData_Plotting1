@@ -1,7 +1,7 @@
 ## Download data from url, and create red histogram of Global Active Power (kilowatts)
 ## Output shall be in a 480x480 png file named plot1.png
 
-library(data.table)
+library(dplyr)
 
 skip_download = FALSE
 
@@ -26,9 +26,9 @@ date_downloaded <- date()
 df <- read.csv(unz(data_file, "household_power_consumption.txt"),
               header=TRUE, sep=";", na.strings=c("?"))
 
-
 ## Before converting dates and times, subset to retain only rows that we're interested in
-df <- df[df$Date %in% dates_to_keep,]    # Results in 2880 obs. of 9 variables
+##df <- df[df$Date %in% dates_to_keep,]    # Results in 2880 obs. of 9 variables
+df <- filter(df, Date %in% dates_to_keep)
 
 ok <- complete.cases(df)                 # Turns out all are complete
 df <- df[ok, ]

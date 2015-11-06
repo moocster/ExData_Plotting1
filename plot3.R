@@ -57,9 +57,12 @@ df <- mutate(df, When=convert_dt(Date, Time))
 
 png("plot3.png", width=480, height=480)
 
+ylab_text <- "Energy sub metering"                             # Exactly match example
+#ylab_text <- "Active Energy Consumed per Minute (Watt-hour)" # A better label
+
 ## plot labels, sub_metering_1
 plot(df$When, df$Sub_metering_1, type="l",
-     xlab="", ylab="Active Energy Consumed per Minute (Watt-hour)")
+     xlab="", ylab=ylab_text)
 
 lines(df$When, df$Sub_metering_2, col="red")
 lines(df$When, df$Sub_metering_3, col="blue")

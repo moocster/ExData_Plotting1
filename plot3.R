@@ -1,6 +1,6 @@
-### Download data from url, and plot of Global Active Power (kilowatts) vs date
+### Download data from url, and plot Energy sub metering vs date,
 ### with x-axis ticks at "Thu", "Fri", "Sat"
-### Output shall be in a 480x480 png file named plot2.png
+### Output shall be a 480x480 png file named plot3.png
 
 library(dplyr)
 
@@ -9,7 +9,7 @@ skip_download = FALSE
 data_url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 data_file <- "data/household_power_consumption.zip"
 
-dates_to_keep <- c("2/1/2007", "2/2/2007")
+dates_to_keep <- c("1/2/2007", "2/2/2007") # DD/MM/YY  not typical US order!
 
 
 if (!dir.exists("data")) {
@@ -38,7 +38,7 @@ convert_dt <- function(date, time) {
     ## Convert date and time as found in data file into POSIXct
     ##
     ## Args:
-    ##   date: character vector in MM/DD/YYYY format (or vector of same)
+    ##   date: character vector in DD/MM/YYYY format (or vector of same)
     ##   time: character vector in HH:MM:SS format (or vector of same)
     ##
     ## Returns:
@@ -47,7 +47,7 @@ convert_dt <- function(date, time) {
     ## Note:
     ##   Given that actual timezone of data is unknown, assume UTC
     ##
-    as.POSIXct(strptime(paste(date, time), "%m/%d/%Y %H:%M:%S", tz="GMT"))
+    as.POSIXct(strptime(paste(date, time), "%d/%m/%Y %H:%M:%S", tz="GMT"))
 }
 
 ## Convert Date and Time strings to POSIXct
@@ -55,9 +55,18 @@ convert_dt <- function(date, time) {
 df <- mutate(df, When=convert_dt(Date, Time))
 
 
-png("plot2.png", width=480, height=480)
+png("plot3.png", width=480, height=480)
 
-plot(df$When, df$Global_active_power, type="l",
-     xlab="", ylab="Global Active Power (kilowatts)")
+## plot labels, sub_metering_1
+plot(df$When, df$Sub_metering_1, type="l",
+     xlab="", ylab="Active Energy Consumed per Minute (Watt-hour)")
+
+lines(df$When, df$Sub_metering_2, col="red")
+lines(df$When, df$Sub_metering_3, col="blue")
+
+legend("topright", lty=1,
+       col=c("black", "red", "blue"),
+       legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+
 
 dev.off()

@@ -18,11 +18,11 @@ convert_dt <- function(date, time) {
     ## Convert date and time as found in data file into POSIXct
     ##
     ## Args:
-    ##   date: character vector in DD/MM/YYYY format (or vector of same)
-    ##   time: character vector in HH:MM:SS format (or vector of same)
+    ##   date: character vector in DD/MM/YYYY format
+    ##   time: character vector in HH:MM:SS format
     ##
     ## Returns:
-    ##   POSIXct object (or vector of same if date and time are vectors)
+    ##   POSIXct vector
     ##
     ## Note:
     ##   Given that actual timezone of data is unknown, assume UTC

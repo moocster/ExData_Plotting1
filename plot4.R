@@ -3,7 +3,7 @@
 
 library(dplyr)
 
-skip_download = TRUE
+skip_download = FALSE
 
 data_url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 data_file <- "data/household_power_consumption.zip"
@@ -66,7 +66,7 @@ plot_global_active_power <- function() {
 
 plot_global_reactive_power <- function() {
     plot(df$When, df$Global_reactive_power, type="l",
-         xlab="datetime", ylab="Global Reactive Power")
+         xlab="datetime", ylab="Global_reactive_power")
 }
 
 plot_voltage <- function() {
